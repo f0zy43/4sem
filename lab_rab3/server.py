@@ -27,7 +27,7 @@ arduino = serial.Serial(detect_arduino_port(), baudrate=9600)
 
 ###################################################################################
 """подключаем и создаем БД"""
-conn = sqlite3.connect('C:/Users/HP/Desktop/lr3/sensor_data.db', check_same_thread=False)
+conn = sqlite3.connect('sensor_data.db', check_same_thread=False)
 cursor = conn.cursor()
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS sensor_data (
@@ -209,7 +209,6 @@ def run_server():
     print("Server is running on {}:{}".format(host, port))
     client_socket, addr = server_socket.accept()
     print("Connected to:", addr)
-    #read_data_from_arduino()
     while True:
         data = client_socket.recv(1024).decode()
         if not data:
